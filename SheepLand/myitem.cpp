@@ -15,7 +15,7 @@ QRectF MyItem::boundingRect() const
 
 void MyItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* styleGraphicsItem, QWidget* widget)
 {
-    scene()->addItem(pixmapItem);
+    pixmapItem->paint(painter, styleGraphicsItem, widget);
 }
 
 /*void QGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
@@ -25,6 +25,8 @@ void MyItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* styleGraph
 
 void MyItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
+    QGraphicsItem::mouseMoveEvent(event);
+
     QPointF startingPoint = pos();
     if (!(&scene()->collidingItems(this))->isEmpty())
     {
