@@ -13,6 +13,10 @@ public:
     ~MainWindow();
 
 protected slots:
+    void addSheep1();
+    void addSheep2();
+    void addSheep3();
+    void addSheep4();
 
 private:
     QGraphicsScene *scene;

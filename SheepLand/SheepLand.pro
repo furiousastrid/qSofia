@@ -11,11 +11,19 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    myitem.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    myitem.h
 
 RC_FILE = sheep.rc
+
+
+
+
+
+
 
 
 

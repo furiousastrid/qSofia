@@ -16,10 +16,6 @@ protected slots:
     void adjustLocation();
     void changeLocation();
     void adjustTitle();
-    /*void finishLoading(bool);
-
-    void viewSource();
-    void slotSourceDownloaded();*/
 
 private:
     QWebView *view;
