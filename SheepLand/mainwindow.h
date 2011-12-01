@@ -17,7 +17,9 @@ protected slots:
     void addSheep2();
     void addSheep3();
     void addSheep4();
+    void killSheep(bool mode);
 
 private:
     QGraphicsScene *scene;
+    QAction *buttonKill;
 };

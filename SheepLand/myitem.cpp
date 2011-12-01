@@ -2,10 +2,13 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 
-MyItem::MyItem(QPixmap& pixmap)
+MyItem::MyItem(QPixmap& pixmap, bool killingMode)
 {
+    this->killingMode = killingMode;
     pixmapItem = new QGraphicsPixmapItem(pixmap);
-    pixmapItem->setFlag(QGraphicsItem::ItemIsMovable);
+    setFlag(QGraphicsItem::ItemIsMovable);
+    //QRectF itemsBoundingRect = scene()->itemsBoundingRect();
+    //if (intersects())
 }
 
 QRectF MyItem::boundingRect() const
@@ -18,23 +21,26 @@ void MyItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* styleGraph
     pixmapItem->paint(painter, styleGraphicsItem, widget);
 }
 
-/*void QGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void MyItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-
-}*/
+    if (killingMode)
+    {
+        setVisible(false);
+        killingMode = false;
+    }
+}
 
 void MyItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-    QGraphicsItem::mouseMoveEvent(event);
-
     QPointF startingPoint = pos();
+    QGraphicsItem::mouseMoveEvent(event);
     if (!(&scene()->collidingItems(this))->isEmpty())
     {
         setPos(startingPoint);
     }
 }
 
-/*void QGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+void MyItem::setKillingMode(bool mode)
 {
-
-}*/
+    killingMode = mode;
+}
